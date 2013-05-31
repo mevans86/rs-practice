@@ -1,3 +1,7 @@
 
 .DS_Store
 
+
+app/lib/ajax/tracking.php
+
+app/lib/connect.php

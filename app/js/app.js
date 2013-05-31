@@ -4,10 +4,10 @@ var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider'
 		.when('/stats', { templateUrl: 'partials/statistics.html', controller: statisticsCtrl })
 		.otherwise({ redirectTo: '/home' });
 }]).service('userInfo', function() {
-	var gender = '';
+	var gender = 'missing';
 	var age = -1;
-	var lastCourse = '';
-	var experience = '';
+	var lastCourse = 'missing';
+	var experience = 'missing';
 	var username = Math.random().toString(36).substring(4);
 	return {
 		setGender: function(g) {
@@ -164,7 +164,91 @@ var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider'
 		},
 		{
 			'id': 38, 'desc': 1
-		}
+		},
+		{
+			'id': 39, 'desc': 0
+		},
+		{
+			'id': 40, 'desc': 0
+		},
+		{
+			'id': 41, 'desc': 0
+		},
+		{
+			'id': 42, 'desc': 0
+		},
+		{
+			'id': 43, 'desc': 0
+		},
+		{
+			'id': 44, 'desc': 0
+		},
+		{
+			'id': 45, 'desc': 0
+		},
+		{
+			'id': 46, 'desc': 0
+		},
+		{
+			'id': 47, 'desc': 1
+		},
+		{
+			'id': 48, 'desc': 1
+		},
+		{
+			'id': 49, 'desc': 1
+		},
+		{
+			'id': 50, 'desc': 1
+		},
+		{
+			'id': 51, 'desc': 0
+		},
+		{
+			'id': 52, 'desc': 0
+		},
+		{
+			'id': 53, 'desc': 0
+		},
+		{
+			'id': 54, 'desc': 0
+		},
+		{
+			'id': 55, 'desc': 1
+		},
+		{
+			'id': 56, 'desc': 1
+		},
+		{
+			'id': 57, 'desc': 1
+		},
+		{
+			'id': 58, 'desc': 1
+		},
+		{
+			'id': 59, 'desc': 1
+		},
+		{
+			'id': 60, 'desc': 1
+		},
+		{
+			'id': 61, 'desc': 1
+		},
+		{
+			'id': 62, 'desc': 1
+		},
+		{
+			'id': 63, 'desc': 0
+		},
+		{
+			'id': 64, 'desc': 0
+		},
+		{
+			'id': 65, 'desc': 0
+		},
+		{
+			'id': 66, 'desc': 0
+		},
 	];
 	return {
 		getProblems: function() {
