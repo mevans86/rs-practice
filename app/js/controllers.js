@@ -59,6 +59,6 @@ function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 	$scope.winningPercentage = $scope.correctCount / (Math.max(1, $scope.responses.length));
 	$scope.winningPercentage = Math.round($scope.winningPercentage * 10000) / 100;
 	$scope.userInfo = userInfo.getUserInfo();
-	alert(JSON.stringify($scope.userInfo));
+	// alert(JSON.stringify($scope.userInfo));
 	responsesVector.deleteResponses();
 }
