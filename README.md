@@ -1,3 +1,3 @@
 Tetrahedral carbons attached to four different ligands exist in one of two possible configurations. The *R*/*S* convention is used by organic chemists to distinguish between these two possible configurations in the names of organic compounds. This (currently incomplete) web application helps users practice *R*/*S* labeling in a timed environment. The overarching goal is to improve the user's ability to work with molecules mentally in three dimensions.
 
-For more information about stereochemistry and the Cahn-Ingold-Prelog system for stereochemical nomenclature, see [this link](http://osf1.gmu.edu/~bbishop1/Stereochemistry%20Lecture.pdf).
+For more information about stereochemistry and the Cahn-Ingold-Prelog system for stereochemical nomenclature, see [this link](http://osf1.gmu.edu/~bbishop1/Stereochemistry%20Lecture.pdf). For a working demo of the app, [click here](http://www.metallacycle.com/play/rs-practice/app/#/home).

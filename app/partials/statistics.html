@@ -1,0 +1,31 @@
+<p>
+	Your statistics for this session are shown below, along with global averages for everyone who has used the site. How'd you do?
+</p>
+
+<div class="alert alert-info" id="stats-percentage">
+	<h2>{{winningPercentage | number }}% correct</h2>
+</div>
+
+<table class="table table-condensed" id="statistics-table">
+	<thead>
+		<tr class="info">
+			<th>Problem ID</th>
+			<th>Score</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-switch on="processedResponses.length">
+			<td ng-switch-when="0" colspan="3">You didn't attempt any problems.</td>
+		</tr>
+		<tr ng-repeat="response in processedResponses">
+			<td>{{response.id}}</td>
+			<td><span class="badge badge-{{response.scoreClass}}">{{response.score}}</span></td>
+			<td>{{response.t}} s</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>
+	Want to <a href="#/trainer">go again?</a> You can also head back to the <a href="#/home">home page</a>.
+</p>

@@ -1,93 +1,64 @@
-angular.module('rsPractice', []).config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/trainer', { templateUrl: 'partials/problem.html', controller: rsPracticeCtrl })
-		.when('/home', { templateUrl: 'partials/get-started.html', controller: startCtrl })
-		.otherwise({ redirectTo: '/home' });
-}]);
-
-function startCtrl($scope) {
-
+function startCtrl($scope, problemCollection, responsesVector, userInfo) {
+	$scope.problemCount = problemCollection.getProblemCount();
+	responsesVector.deleteResponses();
+	$(".gender").click(function() {
+	    $("#gender-i").val($(this).text().toLowerCase());
+	});
+	$(".last-course").click(function() {
+	    $("#last-course-i").val($(this).attr('id'));
+	});
+	$(".experience").click(function() {
+	    $("#experience-i").val($(this).attr('id'));
+	});
+	$scope.setDemographicData = function() {
+		userInfo.setGender($("#gender-i").val());
+		userInfo.setAge(parseInt($("#age").val()));
+		userInfo.setLastCourse($("#last-course-i").val());
+		userInfo.setExperience($("#experience-i").val());
+	};
 }
 
-function rsPracticeCtrl($scope) {
-	$scope.problems = [
-		{
-			'id': 1,
-			'descriptor': 0 // R = 0, S = 1
-		},
-		{
-			'id': 2,
-			'descriptor': 0
-		},
-		{
-			'id': 3,
-			'descriptor': 0
-		},
-		{
-			'id': 4,
-			'descriptor': 0
-		},
-		{
-			'id': 5,
-			'descriptor': 0
-		},
-		{
-			'id': 6,
-			'descriptor': 0
-		},
-		{
-			'id': 7,
-			'descriptor': 1
-		},
-		{
-			'id': 8,
-			'descriptor': 1
-		},
-		{
-			'id': 9,
-			'descriptor': 1
-		},
-		{
-			'id': 10,
-			'descriptor': 1
-		},
-		{
-			'id': 11,
-			'descriptor': 1
-		},
-		{
-			'id': 12,
-			'descriptor': 1
-		},
-		{
-			'id': 13,
-			'descriptor': 1
-		},
-		{
-			'id': 14,
-			'descriptor': 1
-		},
-		{
-			'id': 15,
-			'descriptor': 1
-		},
-		{
-			'id': 16,
-			'descriptor': 1
-		}
-	];
-	$scope.problemCount = $scope.problems.length;
-	$scope.currentProblem = Math.floor(Math.random() * 15) + 1;
-	$scope.responses = [];
+function trainerCtrl($scope, responsesVector, problemCollection) {
+	$scope.problems = problemCollection.getProblems();
+	$scope.problemCount = problemCollection.getProblemCount();
+	$scope.currentProblem = Math.floor(Math.random() * ($scope.problemCount - 1)) + 1;
 	$scope.startTime = new Date().getTime();
-	
+	$scope.responses = responsesVector.getResponses();
 	$scope.advance = function(currentProblemID, selectedDescriptor) {
-		var responseTime = ((new Date().getTime()) - $scope.startTime) / 1000;
-		
+		var responseTime = ((new Date().getTime()) - this.startTime) / 1000;
 		var next = currentProblemID;
 		while(next == currentProblemID) {
-			next = Math.floor(Math.random() * 15) + 1;
+			next = Math.floor(Math.random() * ($scope.problemCount - 1)) + 1;
 		}
-		$scope.currentProblem = next;
-		$scope.responses.push({ 'id': currentProblemID, 'sel': selectedDescriptor, 't': responseTime });
+		this.currentProblem = next;
+		responsesVector.addResponse(currentProblemID, responseTime, selectedDescriptor);
+		this.responses = responsesVector.getResponses();
+	};
+}
+
+function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
+	$scope.responses = responsesVector.getResponses();
+	$scope.problems = problemCollection.getProblems();
+	$scope.processedResponses = [];
+	$scope.correctCount = 0;
+	$scope.winningPercentage = 0.0;
+	for(var i = 0; i < $scope.responses.length; i++) {
+		var j = $scope.responses[i].id - 1;
+		var score = ($scope.problems[j].desc == $scope.responses[i].desc) + 0;
+		$scope.correctCount += score;
+		if(score) var scoreClass = 'success'; else var scoreClass = 'important';
+		var t = $scope.responses[i].t;
+		if(i > 0) t = t - $scope.responses[i-1].t;
+		$scope.processedResponses.push({
+			'id': $scope.responses[i].id,
+			'score': score,
+			'scoreClass': scoreClass,
+			't': (Math.round(t * Math.pow(10,4)) / Math.pow(10,4))
+		});
 	}
+	$scope.winningPercentage = $scope.correctCount / (Math.max(1, $scope.responses.length));
+	$scope.winningPercentage = Math.round($scope.winningPercentage * 10000) / 100;
+	$scope.userInfo = userInfo.getUserInfo();
+	alert(JSON.stringify($scope.userInfo));
+	responsesVector.deleteResponses();
 }

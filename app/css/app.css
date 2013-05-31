@@ -2,6 +2,18 @@
 	padding-top: 50px;
 }
 
+#statistics-table {
+	width: 280px;
+	margin: auto;
+}
+
+#stats-percentage {
+	width: 280px;
+	padding: 8px;
+	margin: auto;
+	text-align: center;
+}
+
 #structure-div {
 	text-align: center;
 }

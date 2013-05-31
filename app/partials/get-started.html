@@ -1,9 +1,53 @@
+<h2 class="page-header">
+	<em>R</em>/<em>S</em> Labeling Trainer
+	<small class="pull-right">train your mind's eye</small>
+</h2>
 <p>
-	Welcome! This <em>R</em>/<em>S</em> trainer will help you hone your ability to work with molecules in three dimensions in your mind. As quickly as you can, select the appropriate stereochemical descriptor for the stereocenter indicated with a red asterisk.
+	Welcome! This <em>R</em>/<em>S</em> trainer will help you develop your ability to work with molecules in three dimensions in your mind. As quickly as you can, select the appropriate stereochemical descriptor for the stereocenter indicated with a red asterisk. There are <b>{{problemCount}}</b> problems in the trainer right now.
 </p>
 
 <p>
-	Click the button below to get started. When you're done, click "End Session" to stop labeling and see your statistics.
+	Help us out with some demographic information about yourself, and then click the button below to get started. When you're done, click "End Session" to stop labeling and see your statistics.
 </p>
 
-<a class="btn btn-large btn-primary" href="#/trainer">Get Started!</a>
+<form>
+	<h3>Demographic Information</h3>
+	<p>
+		<p>What is your gender?</p>
+		<div class="btn-group" data-toggle="buttons-radio">
+			<button class="btn gender" id="male">Male</button>
+			<button class="btn gender" id="female">Female</button>
+		</div>
+		<input type="hidden" id="gender-i" />
+	</p>
+	<p>
+		<p>How old are you?</p>
+		<input type="number" class="input-small" value="18" id="age" />
+	</p>
+	<p>
+		<p>How long ago was your last organic chemistry course as a teacher <em>or</em> student?</p>
+		<div class="btn-group" data-toggle="buttons-radio" id="last-course">
+			<button class="btn last-course" id="lt-twelve-mos">Less than 12 months</button>
+			<button class="btn last-course" id="one-two-yrs">1-2 years</button>
+			<button class="btn last-course" id="one-two-yrs">3-5 years</button>
+			<button class="btn last-course" id="five-ten-yrs">6-10 years</button>
+			<button class="btn last-course" id="five-ten-yrs">More than 10 years</button>
+		</div>
+		<input type="hidden" id="last-course-i" />
+	</p>
+	<p>
+		<p>How much experience do you have with organic chemistry?</p>
+		<div class="btn-group" data-toggle="buttons-radio" id="experience">
+			<button class="btn experience" id="no-exp">None at all</button>
+			<button class="btn experience" id="one-sem">1 semester</button>
+			<button class="btn experience" id="two-sem">2 semesters</button>
+			<button class="btn experience" id="grad-student">Graduate work</button>
+			<button class="btn experience" id="professional">Professional chemist</button>
+			<button class="btn experience" id="professional">Professional organic chemist</button>
+		</div>
+		<input type="hidden" id="experience-i" />
+	</p>
+</form>
+<p>
+	<a class="btn btn-large btn-primary" ng-click="setDemographicData()" href="#/trainer">Get Started!</a>
+</p>
