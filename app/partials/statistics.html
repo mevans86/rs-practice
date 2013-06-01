@@ -1,31 +1,29 @@
 <p>
-	Your statistics for this session are shown below, along with global averages for everyone who has used the site. How'd you do?
+	Your statistics for this session are shown below, along with global averages for everyone who has used the site. Want to <a href="#/trainer">go again?</a> You can also head back to the <a href="#/home">home page</a>.
 </p>
 
 <div class="alert alert-info" id="stats-percentage">
 	<h2>{{winningPercentage | number }}% correct</h2>
 </div>
 
-<table class="table table-condensed" id="statistics-table">
-	<thead>
+<table class="table table-condensed tablesorter" id="statistics-table">
+	<thead id="stats-table-head">
 		<tr class="info">
-			<th>Problem ID</th>
-			<th>Score</th>
-			<th>Time</th>
+			<th ng-click="predicate = '$index'; reverseSort = !reverseSort;">Problem</th>
+			<th ng-click="predicate = 'id'; reverseSort = !reverseSort;">ID</th>
+			<th ng-click="predicate = 'score'; reverseSort = !reverseSort;">Score</th>
+			<th ng-click="predicate = 't'; reverseSort = !reverseSort;">Time (sec)</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-switch on="processedResponses.length">
-			<td ng-switch-when="0" colspan="3">You didn't attempt any problems.</td>
+			<td ng-switch-when="0" colspan="4">You didn't attempt any problems.</td>
 		</tr>
-		<tr ng-repeat="response in processedResponses">
+		<tr ng-repeat="response in processedResponses | orderBy:predicate:reverseSort">
+			<td>{{$index + 1}}</td>
 			<td>{{response.id}}</td>
 			<td><span class="badge badge-{{response.scoreClass}}">{{response.score}}</span></td>
-			<td>{{response.t}} s</td>
+			<td>{{response.t}}</td>
 		</tr>
 	</tbody>
 </table>
-
-<p>
-	Want to <a href="#/trainer">go again?</a> You can also head back to the <a href="#/home">home page</a>.
-</p>

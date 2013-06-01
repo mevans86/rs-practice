@@ -14,7 +14,7 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="../app">R/S Labeling Trainer</a>
+				<a class="brand" href="../app"><em>R</em>/<em>S</em> Labeling Trainer</a>
 			</div>
 		</div>
 	</div>

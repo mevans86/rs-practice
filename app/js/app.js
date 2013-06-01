@@ -1,5 +1,18 @@
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
+function range(i){ return i ? range(i-1).concat(i) : []; }
+
 var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/trainer', { templateUrl: 'partials/problem.html', controller: trainerCtrl })
+	$routeProvider.when('/trainer', { templateUrl: 'partials/trainer.html', controller: trainerCtrl })
 		.when('/home', { templateUrl: 'partials/get-started.html', controller: startCtrl })
 		.when('/stats', { templateUrl: 'partials/statistics.html', controller: statisticsCtrl })
 		.otherwise({ redirectTo: '/home' });
@@ -250,7 +263,17 @@ var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider'
 			'id': 66, 'desc': 0
 		},
 	];
+	var problemsRemaining = range(problems.length);
 	return {
+		removeProblem: function(p) {
+			problemsRemaining.remove(p);
+		},
+		getCountOfProblemsRemaining: function() {
+			return problemsRemaining.length;
+		},
+		getProblemsRemaining: function() {
+			return problemsRemaining;
+		},
 		getProblems: function() {
 			return problems;
 		},

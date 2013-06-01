@@ -18,25 +18,37 @@ function startCtrl($scope, problemCollection, responsesVector, userInfo) {
 	};
 }
 
-function trainerCtrl($scope, responsesVector, problemCollection) {
+function trainerCtrl($scope, responsesVector, problemCollection) {	
 	$scope.problems = problemCollection.getProblems();
-	$scope.problemCount = problemCollection.getProblemCount();
-	$scope.currentProblem = Math.floor(Math.random() * ($scope.problemCount - 1)) + 1;
+	$scope.problemCount = problemCollection.getCountOfProblemsRemaining();
+	$scope.currentProblem = Math.floor(Math.random() * $scope.problemCount);
 	$scope.startTime = new Date().getTime();
 	$scope.responses = responsesVector.getResponses();
 	$scope.advance = function(currentProblemID, selectedDescriptor) {
 		var responseTime = ((new Date().getTime()) - this.startTime) / 1000;
-		var next = currentProblemID;
+		/* var next = currentProblemID;
 		while(next == currentProblemID) {
 			next = Math.floor(Math.random() * ($scope.problemCount - 1)) + 1;
-		}
-		this.currentProblem = next;
+		} */
+		problemCollection.removeProblem(currentProblemID);
 		responsesVector.addResponse(currentProblemID, responseTime, selectedDescriptor);
 		this.responses = responsesVector.getResponses();
+		
+		if(problemCollection.getCountOfProblemsRemaining() == 0) {
+			// all problems attempted
+			location.href = '#/stats';
+			return;
+		} else {
+			$scope.problemCount = problemCollection.getCountOfProblemsRemaining();
+			var nextIndex = Math.floor(Math.random() * $scope.problemCount);
+			this.currentProblem = problemCollection.getProblemsRemaining()[nextIndex];
+		}
 	};
 }
 
 function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
+	$scope.reverseSort = true;
+	
 	$scope.responses = responsesVector.getResponses();
 	$scope.problems = problemCollection.getProblems();
 	$scope.processedResponses = [];
@@ -62,12 +74,14 @@ function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 	// alert(JSON.stringify($scope.userInfo));	
 	responsesVector.deleteResponses();
 	var sequence = JSON.stringify($scope.processedResponses);
-	$.post('lib/ajax/tracking.php', {
-		'username': $scope.userInfo.username,
-		'sequence': sequence,
-		'gender': $scope.userInfo.gender,
-		'experience': $scope.userInfo.experience,
-		'lastCourse': $scope.userInfo.lastCourse,
-		'age': $scope.userInfo.age
-	});
+	if(sequence != '[]') {
+		$.post('lib/ajax/tracking.php', {
+			'username': $scope.userInfo.username,
+			'sequence': sequence,
+			'gender': $scope.userInfo.gender,
+			'experience': $scope.userInfo.experience,
+			'lastCourse': $scope.userInfo.lastCourse,
+			'age': $scope.userInfo.age
+		});
+	}
 }
