@@ -26,10 +26,6 @@ function trainerCtrl($scope, responsesVector, problemCollection) {
 	$scope.responses = responsesVector.getResponses();
 	$scope.advance = function(currentProblemID, selectedDescriptor) {
 		var responseTime = ((new Date().getTime()) - this.startTime) / 1000;
-		/* var next = currentProblemID;
-		while(next == currentProblemID) {
-			next = Math.floor(Math.random() * ($scope.problemCount - 1)) + 1;
-		} */
 		problemCollection.removeProblem(currentProblemID);
 		responsesVector.addResponse(currentProblemID, responseTime, selectedDescriptor);
 		this.responses = responsesVector.getResponses();
@@ -48,12 +44,12 @@ function trainerCtrl($scope, responsesVector, problemCollection) {
 
 function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 	$scope.reverseSort = true;
-	
 	$scope.responses = responsesVector.getResponses();
 	$scope.problems = problemCollection.getProblems();
 	$scope.processedResponses = [];
 	$scope.correctCount = 0;
 	$scope.winningPercentage = 0.0;
+	$scope.txtString = 'Problem\tID\tScore\tTime\tURL\n';
 	for(var i = 0; i < $scope.responses.length; i++) {
 		var j = $scope.responses[i].id - 1;
 		var score = ($scope.problems[j].desc == $scope.responses[i].desc) + 0;
@@ -67,11 +63,11 @@ function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 			'scoreClass': scoreClass,
 			't': (Math.round(t * Math.pow(10,4)) / Math.pow(10,4))
 		});
+		$scope.txtString += ((i + 1) + '\t' + $scope.responses[i].id + '\t' + score + '\t' + $scope.processedResponses[i].t + '\t' + 'http://www.metallacycle.com/play/rs-practice/app/img/' + $scope.responses[i].id + '.png\n');
 	}
 	$scope.winningPercentage = $scope.correctCount / (Math.max(1, $scope.responses.length));
 	$scope.winningPercentage = Math.round($scope.winningPercentage * 10000) / 100;
 	$scope.userInfo = userInfo.getUserInfo();
-	// alert(JSON.stringify($scope.userInfo));	
 	responsesVector.deleteResponses();
 	var sequence = JSON.stringify($scope.processedResponses);
 	if(sequence != '[]') {

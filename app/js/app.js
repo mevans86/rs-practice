@@ -281,4 +281,34 @@ var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider'
 			return problems.length;
 		}
 	};
+}).directive('problemTip', function() {
+	return function(scope, element, attrs) {
+		$(element).tooltip({
+			html: true,
+			container: 'body',
+			title: '<img src="img/' + scope.response.id + '.png" width="140" />'
+		});
+	}
+}).directive('correctMean', function() {
+	return function(scope, element, attrs) {
+		var arr = $(element).attr('id').split('-');
+		var id = arr[0];
+		$.get('lib/ajax/tracking.php', {
+			'a': 'corrMean',
+			'id': scope.response.id
+		}, function(data) {
+			$(element).html(parseFloat(data));
+		});
+	}
+}).directive('incorrectMean', function() {
+	return function(scope, element, attrs) {
+		var arr = $(element).attr('id').split('-');
+		var id = arr[0];
+		$.get('lib/ajax/tracking.php', {
+			'a': 'incorrMean',
+			'id': scope.response.id
+		}, function(data) {
+			$(element).html(parseFloat(data));
+		});
+	}
 });

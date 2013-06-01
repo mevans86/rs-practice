@@ -2,17 +2,25 @@ body {
 	padding-bottom: 20px;
 }
 
+.correct-mean {
+	color: rgb(61,120,46);
+}
+
+.incorrect-mean {
+	color: rgb(165,55,54);
+}
+
 #main-container {
 	padding-top: 50px;
 }
 
 #statistics-table {
-	width: 280px;
+	width: 300px;
 	margin: auto;
 }
 
 #stats-percentage {
-	width: 280px;
+	width: 300px;
 	padding: 8px;
 	margin: auto;
 	text-align: center;
@@ -24,4 +32,10 @@ body {
 
 #structure-div {
 	text-align: center;
+}
+
+#stats-txt {
+	width: 600px;
+	margin: auto;
+	padding-top: 20px;
 }

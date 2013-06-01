@@ -1,5 +1,5 @@
 <p>
-	Your statistics for this session are shown below, along with global averages for everyone who has used the site. Want to <a href="#/trainer">go again?</a> You can also head back to the <a href="#/home">home page</a>.
+	Your statistics for this session are shown below, along with global averages for everyone who has used the site. Average times for correct responses are shown in green and average times for incorrect responses are listed in red. Hover over a problem ID to see the structure associated with the problem. Want to <a href="#/trainer">go again?</a> You can also head back to the <a href="#/home">home page</a>.
 </p>
 
 <div class="alert alert-info" id="stats-percentage">
@@ -21,9 +21,9 @@
 		</tr>
 		<tr ng-repeat="response in processedResponses | orderBy:predicate:reverseSort">
 			<td>{{$index + 1}}</td>
-			<td>{{response.id}}</td>
+			<td problem-tip>{{response.id}}</td>
 			<td><span class="badge badge-{{response.scoreClass}}">{{response.score}}</span></td>
-			<td>{{response.t}}</td>
+			<td>{{response.t}} (<span id="{{response.id}}-corr-mean" class="correct-mean" correct-mean></span> / <span id="{{response.id}}-incorr-mean" class="incorrect-mean" incorrect-mean></span>)</td>
 		</tr>
 	</tbody>
 </table>
