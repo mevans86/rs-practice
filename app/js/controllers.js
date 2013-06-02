@@ -77,7 +77,8 @@ function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 			'gender': $scope.userInfo.gender,
 			'experience': $scope.userInfo.experience,
 			'lastCourse': $scope.userInfo.lastCourse,
-			'age': $scope.userInfo.age
+			'age': $scope.userInfo.age,
+			'userAgent': navigator.userAgent
 		});
 	}
 }
