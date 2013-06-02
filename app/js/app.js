@@ -262,6 +262,78 @@ var rsPracticeModule = angular.module('rsPractice', []).config(['$routeProvider'
 		{
 			'id': 66, 'desc': 0
 		},
+		{
+			'id': 67, 'desc': 1
+		},
+		{
+			'id': 68, 'desc': 1
+		},
+		{
+			'id': 69, 'desc': 1
+		},
+		{
+			'id': 70, 'desc': 1
+		},
+		{
+			'id': 71, 'desc': 0
+		},
+		{
+			'id': 72, 'desc': 0
+		},
+		{
+			'id': 73, 'desc': 1
+		},
+		{
+			'id': 74, 'desc': 1
+		},
+		{
+			'id': 75, 'desc': 1
+		},
+		{
+			'id': 76, 'desc': 1
+		},
+		{
+			'id': 77, 'desc': 0
+		},
+		{
+			'id': 78, 'desc': 0
+		},
+		{
+			'id': 79, 'desc': 1
+		},
+		{
+			'id': 80, 'desc': 0
+		},
+		{
+			'id': 81, 'desc': 1
+		},
+		{
+			'id': 82, 'desc': 0
+		},
+		{
+			'id': 83, 'desc': 0
+		},
+		{
+			'id': 84, 'desc': 0
+		},
+		{
+			'id': 85, 'desc': 1
+		},
+		{
+			'id': 86, 'desc': 1
+		},
+		{
+			'id': 87, 'desc': 1
+		},
+		{
+			'id': 88, 'desc': 0
+		},
+		{
+			'id': 89, 'desc': 0
+		},
+		{
+			'id': 90, 'desc': 0
+		}
 	];
 	var problemsRemaining = range(problems.length);
 	return {

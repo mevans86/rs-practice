@@ -25,19 +25,20 @@
 		<input type="number" class="input-small" value="18" id="age" />
 	</p>
 	<p>
-		<p>How long ago was your last organic chemistry course as a teacher <em>or</em> student?</p>
+		<p>How long ago was your last organic chemistry course as a teacher <em>or</em> student? If you're taking/teaching a course now, select "Currently involved." If you've never taken a course in organic chemistry, select "Never."</p>
 		<div class="btn-group" data-toggle="buttons-radio" id="last-course">
-			<button class="btn last-course" id="lt-twelve-mos">Less than 12 months</button>
+			<button class="btn last-course" id="in-course-now">Currently involved</button>
+			<button class="btn last-course" id="lt-twelve-mos">&lt; 12 months</button>
 			<button class="btn last-course" id="one-two-yrs">1-2 years</button>
 			<button class="btn last-course" id="one-two-yrs">3-5 years</button>
 			<button class="btn last-course" id="five-ten-yrs">6-10 years</button>
-			<button class="btn last-course" id="five-ten-yrs">More than 10 years</button>
-			<button class="btn last-course" id="no-course">Never taken a course</button>
+			<button class="btn last-course" id="five-ten-yrs">&gt; 10 years</button>
+			<button class="btn last-course" id="no-course">Never</button>
 		</div>
 		<input type="hidden" id="last-course-i" />
 	</p>
 	<p>
-		<p>How much experience do you have with organic chemistry?</p>
+		<p>How much experience do you have with organic chemistry? Consider both academic and professional experience.</p>
 		<div class="btn-group" data-toggle="buttons-radio" id="experience">
 			<button class="btn experience" id="no-exp">None at all</button>
 			<button class="btn experience" id="one-sem">1 semester</button>
