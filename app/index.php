@@ -15,6 +15,7 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="brand" href="../app"><em>R</em>/<em>S</em> Labeling Trainer</a>
+				<div class="pull-right loading-header"></div>
 			</div>
 		</div>
 	</div>

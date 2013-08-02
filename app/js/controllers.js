@@ -19,6 +19,13 @@ function startCtrl($scope, problemCollection, responsesVector, userInfo) {
 }
 
 function trainerCtrl($scope, responsesVector, problemCollection) {	
+	/* $('body').ajaxStart(function() {
+		$('.loading-header').html('<img src="img/loader.gif">');
+	});
+	$('body').ajaxStop(function() {
+		$('.loading-header').empty();
+	}); */
+	
 	$scope.problems = problemCollection.getProblems();
 	$scope.problemCount = problemCollection.getCountOfProblemsRemaining();
 	$scope.currentProblem = Math.floor(Math.random() * $scope.problemCount);
@@ -61,7 +68,7 @@ function statisticsCtrl($scope, responsesVector, problemCollection, userInfo) {
 			'id': $scope.responses[i].id,
 			'score': score,
 			'scoreClass': scoreClass,
-			't': (Math.round(t * Math.pow(10,4)) / Math.pow(10,4))
+			't': (Math.round(t * Math.pow(10,3)) / Math.pow(10,3))
 		});
 		$scope.txtString += ((i + 1) + '\t' + $scope.responses[i].id + '\t' + score + '\t' + $scope.processedResponses[i].t + '\t' + 'http://www.metallacycle.com/play/rs-practice/app/img/' + $scope.responses[i].id + '.png\n');
 	}
